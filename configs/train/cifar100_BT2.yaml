@@ -1,0 +1,54 @@
+arch_params:
+  arch: ResNet50_BT2
+  num_classes: 100 # This is the number of classes for architecture FC layer.
+  embedding_dim: 128
+  embedding_dim_old: 128
+  last_nonlin: False
+  norm_feature: True
+  to_add_dim: 32
+  C: 2
+
+old_arch_params:
+  arch: ResNet50
+  num_classes: 50 # This is the number of classes for architecture FC layer.
+  embedding_dim: 128
+  last_nonlin: False
+  norm_feature: True
+
+new_arch_params:
+  arch: ResNet50
+  num_classes: 100 # This is the number of classes for architecture FC layer.
+  embedding_dim: 128
+  last_nonlin: False
+  norm_feature: True
+
+optimizer_params:
+  algorithm: adam
+  lr: 0.001
+  weight_decay: 0.000030517578125
+  no_bn_decay: False
+  momentum: 0.9
+  nesterov: False
+
+dataset_params:
+  name: cifar100 
+  data_root: data_store/cifar-100-python  # This should contain training and validation dirs.
+  num_classes: 100 # This is the number of classes to include for training.
+  num_workers: 20
+  batch_size: 64
+
+lr_policy_params:
+  algorithm: cosine_lr
+  warmup_length: 5
+  epochs: 100
+  lr: 0.001  
+
+epochs: 100
+label_smoothing: 0.1
+lambda_1: 1
+lambda_2: 10
+lambda_3: 5
+old_model_path: checkpoints/cifar100_old.pt 
+new_model_path: checkpoints/cifar100_new.pt
+output_model_path: checkpoints/cifar100_BT2.pt
+

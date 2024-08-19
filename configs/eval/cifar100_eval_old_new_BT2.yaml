@@ -1,0 +1,32 @@
+arch_params:
+  arch: ResNet50_BT2
+  num_classes: 100 # This is the number of classes for architecture FC layer.
+  embedding_dim: 128
+  embedding_dim_old: 128
+  last_nonlin: False
+  norm_feature: True
+  to_add_dim: 32
+  C: 2
+
+gallery_arch_params:
+  arch: ResNet50
+  num_classes: 50 # This is the number of classes for architecture FC layer.
+  embedding_dim: 128
+  last_nonlin: False
+  norm_feature: True
+
+gallery_model_path: checkpoints/cifar100_old.pt
+query_model_path: checkpoints/cifar100_BT2.pt
+
+txt_log_path: logs_result/cifar100_old_new_BT2.txt
+eval_params:
+  distance_metric: cosine
+  verbose: True
+  compute_map: True
+  per_class: False
+
+dataset_params: # Test set of the dataset will be used as both gallery and query sets.
+  name: cifar100
+  data_root: data_store/cifar-100-python
+  num_workers: 4
+  batch_size: 32
